@@ -8,6 +8,8 @@ import java.rmi.AlreadyBoundException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.RMISecurityManager;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 /**
  * Das ist unserer Serveranwendung. Wir erzeugen einfach ein
@@ -17,6 +19,7 @@ import java.rmi.RMISecurityManager;
 public class RunServer {
 	private static Class dummy = RunServer.class;
 	private static BufferedReader br;
+	private static Registry registry;
 	
     public static void main(String[] args) {
         System.setProperty("java.security.policy", "java.policy");
@@ -29,6 +32,8 @@ public class RunServer {
 
         // TODO: ChatServer-Objekt am Namensdienst anmelden
         try{
+        	LocateRegistry.createRegistry(Registry.REGISTRY_PORT); //RMI-Port 1099
+        	registry = LocateRegistry.getRegistry();
         	server = new ChatServerService();
         	br = new BufferedReader(new InputStreamReader(System.in));
         	

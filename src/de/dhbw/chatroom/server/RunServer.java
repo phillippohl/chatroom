@@ -11,6 +11,8 @@ import java.rmi.RMISecurityManager;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import de.dhbw.chatroom.util.SmartExceptionsHandling;
+
 /**
  * Das ist unserer Serveranwendung. Wir erzeugen einfach ein
  * ChatServerService-Objekt und legen es in der RMI Registry ab,
@@ -44,12 +46,20 @@ public class RunServer {
         	System.out.println("Server stopped.");
         	System.exit(0);
         } catch (MalformedURLException mfue) {
-        	mfue.printStackTrace();
+            System.out.println("ACHTUNG: Bitte keinen Unfug als Adresse der rmiregistry eintragen!");
+        	System.out.println();
+        	SmartExceptionsHandling.EnableStackTrace(mfue); 
+            System.exit(-1);
         } catch (RemoteException re){
-        	re.printStackTrace();
+        	System.out.println("ACHTUNG: Haben Sie die rmiregistry gestartet?");
+        	System.out.println();
+        	SmartExceptionsHandling.EnableStackTrace(re);        
+            System.exit(-1);
         } catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+        	System.out.println("ACHTUNG: Ein- bzw. Ausgabe fehlerhaft!");
+        	System.out.println();
+        	SmartExceptionsHandling.EnableStackTrace(e);        
+            System.exit(-1);
 		}      
     }
 }

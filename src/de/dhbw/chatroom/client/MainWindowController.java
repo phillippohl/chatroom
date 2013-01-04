@@ -225,7 +225,7 @@ public class MainWindowController {
     	if (message.trim().length() > 0){
     		chatRoom.postMessage(this.username, message);
     	}
-        else{
+        else {
         	 JOptionPane.showMessageDialog(this.wnd, this.username + ": Leere Nachricht!", "Achtung", JOptionPane.WARNING_MESSAGE);
         }
     }

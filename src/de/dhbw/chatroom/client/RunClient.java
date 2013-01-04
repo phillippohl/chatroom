@@ -5,6 +5,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.RMISecurityManager;
 
+import de.dhbw.chatroom.util.*;
+
 /**
  * Dies ist die Hauptklasse der Clientanwendung. Hier wird zunächst
  * eine entfernte Referenz auf den ChatServer der Serveranwendung
@@ -28,19 +30,19 @@ public class RunClient {
             mwc = new MainWindowController();
             mwc.show();
         } catch (RemoteException ex) {
-            ex.printStackTrace();
-            System.out.println();
-            System.out.println("ACHTUNG: Haben Sie die rmiregistry gestartet?");
+        	System.out.println("ACHTUNG: Haben Sie die rmiregistry gestartet?");
+        	System.out.println();
+        	SmartExceptionsHandling.EnableStackTrace(ex);        
             System.exit(-1);
         } catch (NotBoundException ex) {
-            ex.printStackTrace();
-            System.out.println();
-            System.out.println("ACHTUNG: Läuft auch die Serveranwendung?");
+            System.out.println("ACHTUNG: L�uft auch die Serveranwendung?");
+        	System.out.println();
+        	SmartExceptionsHandling.EnableStackTrace(ex); 
             System.exit(-1);
         } catch (MalformedURLException ex) {
-            ex.printStackTrace();
-            System.out.println();
             System.out.println("ACHTUNG: Bitte keinen Unfug als Adresse der rmiregistry eintragen!");
+        	System.out.println();
+        	SmartExceptionsHandling.EnableStackTrace(ex); 
             System.exit(-1);
         }
     }

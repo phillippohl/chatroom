@@ -202,13 +202,13 @@ public class MainWindowController {
      * Eine Nachricht an einen Benutzer schreiben.
      */
     public void writePrivateMessage() throws Exception {
-        String toUser = JOptionPane.showInputDialog(this.wnd, "EmpfÃ¤nger der Nachricht:");
+        String toUser = JOptionPane.showInputDialog(this.wnd, "Empfänger der Nachricht:");
         if (toUser == null || toUser.isEmpty()) return;
 
         String text = JOptionPane.showInputDialog(this.wnd, "Nachricht:");
         if (text == null || text.isEmpty()) return;
 
-        // TODO: Private Nachricht tatsÃ¤chlich verschicken
+        // TODO: Private Nachricht tatsächlich verschicken
         this.chatServer.sendPrivateMessage(this.username, toUser, text);
         text = this.username + " an " + toUser + ": " + text + "\n";
         this.wnd.getChatTextArea().append(text);
@@ -221,8 +221,13 @@ public class MainWindowController {
         ChatRoom chatRoom = this.checkActiveRoom();
         if (chatRoom == null) return;
 
-        // TODO: Eingegebenen Text posten
-        chatRoom.postMessage(this.username, message);
+        // TODO: Eingegebenen Text posten      
+    	if (message.trim().length() > 0){
+    		chatRoom.postMessage(this.username, message);
+    	}
+        else{
+        	 JOptionPane.showMessageDialog(this.wnd, this.username + ": Leere Nachricht!", "Achtung", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     public void refreshRoomList() throws RemoteException {

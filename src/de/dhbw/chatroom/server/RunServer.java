@@ -17,13 +17,13 @@ import java.rmi.registry.Registry;
  * damit entfernte Clients darauf zugreifen können.
  */
 public class RunServer {
-	private static Class dummy = RunServer.class;
+	//private static Class dummy = RunServer.class;
 	private static BufferedReader br;
 	private static Registry registry;
 	
     public static void main(String[] args) {
         System.setProperty("java.security.policy", "java.policy");
-        System.setProperty("java.rmi.server.codebase", dummy.getProtectionDomain().getCodeSource().getLocation().toString());
+        //System.setProperty("java.rmi.server.codebase", dummy.getProtectionDomain().getCodeSource().getLocation().toString());
         ChatServerService server;
 
         if (System.getSecurityManager() == null) {
@@ -40,7 +40,7 @@ public class RunServer {
 			Naming.rebind("ChatServer", server);
         	System.out.println("Server now running...");
         	System.out.println("Press [ENTER] to stop server...");
-        	br.readLine();
+        	String s = br.readLine();
         	System.out.println("Server stopped.");
         	System.exit(0);
         } catch (MalformedURLException mfue) {

@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+
 /**
  * Diese Klasse implementiert das ChatRoom Interface. Obwohl es sich
  * hier um entfernte Objekte handelt, werden diese nicht in der RMI

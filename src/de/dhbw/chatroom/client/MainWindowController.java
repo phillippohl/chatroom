@@ -45,6 +45,9 @@ public class MainWindowController {
         if (namingHost != null && ! namingHost.equals("")) {
             objectName = "rmi://" + namingHost + "/" + objectName;
         }
+        else{
+        	System.exit(0);
+        }
 
         // TODO: ChatServer-Objekt aus dem Namensdiens auslesen. Den hierfür
         // nötigen Namen finden Sie in der Variable objectName.
@@ -52,8 +55,12 @@ public class MainWindowController {
         
         // Zu verwendenden Benutzernamen erfragen
         this.username = JOptionPane.showInputDialog(this.wnd, "Ihr Benutzername:", "Big Dick");
+        
+        if (this.username == null) {
+            System.exit(0);
+        }
 
-        if (this.username == null || this.username.equals("")) {
+        if (this.username.equals("")) {
             this.username = "Big Dick";
         }
 

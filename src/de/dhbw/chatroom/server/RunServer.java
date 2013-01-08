@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
-import java.rmi.AlreadyBoundException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.RMISecurityManager;
@@ -42,24 +41,15 @@ public class RunServer {
 			Naming.rebind("ChatServer", server);
         	System.out.println("Server now running...");
         	System.out.println("Press [ENTER] to stop server...");
-        	String s = br.readLine();
+        	br.readLine();
         	System.out.println("Server stopped.");
         	System.exit(0);
         } catch (MalformedURLException mfue) {
-            System.out.println("ACHTUNG: Bitte keinen Unfug als Adresse der rmiregistry eintragen!");
-        	System.out.println();
-        	SmartExceptionsHandling.EnableStackTrace(mfue); 
-            System.exit(-1);
+        	SmartExceptionsHandling.EnableStackTrace(mfue, "ACHTUNG: Bitte keinen Unfug als Adresse der rmiregistry eintragen!"); 
         } catch (RemoteException re){
-        	System.out.println("ACHTUNG: Haben Sie die rmiregistry gestartet?");
-        	System.out.println();
-        	SmartExceptionsHandling.EnableStackTrace(re);        
-            System.exit(-1);
-        } catch (IOException e) {
-        	System.out.println("ACHTUNG: Ein- bzw. Ausgabe fehlerhaft!");
-        	System.out.println();
-        	SmartExceptionsHandling.EnableStackTrace(e);        
-            System.exit(-1);
+        	SmartExceptionsHandling.EnableStackTrace(re, "ACHTUNG: Haben Sie die rmiregistry gestartet?");        
+        } catch (IOException ioe) {
+        	SmartExceptionsHandling.EnableStackTrace(ioe, "ACHTUNG: Ein- bzw. Ausgabe fehlerhaft!");        
 		}      
     }
 }

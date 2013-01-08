@@ -30,20 +30,11 @@ public class RunClient {
             mwc = new MainWindowController();
             mwc.show();
         } catch (RemoteException ex) {
-        	System.out.println("ACHTUNG: Haben Sie die rmiregistry gestartet?");
-        	System.out.println();
-        	SmartExceptionsHandling.EnableStackTrace(ex);        
-            System.exit(-1);
+        	SmartExceptionsHandling.EnableStackTrace(ex, "ACHTUNG: Haben Sie die rmiregistry gestartet?");        
         } catch (NotBoundException ex) {
-            System.out.println("ACHTUNG: Läuft auch die Serveranwendung?");
-        	System.out.println();
-        	SmartExceptionsHandling.EnableStackTrace(ex); 
-            System.exit(-1);
+        	SmartExceptionsHandling.EnableStackTrace(ex, "ACHTUNG: Läuft auch die Serveranwendung?"); 
         } catch (MalformedURLException ex) {
-            System.out.println("ACHTUNG: Bitte keinen Unfug als Adresse der rmiregistry eintragen!");
-        	System.out.println();
-        	SmartExceptionsHandling.EnableStackTrace(ex); 
-            System.exit(-1);
+        	SmartExceptionsHandling.EnableStackTrace(ex, "ACHTUNG: Bitte keinen Unfug als Adresse der rmiregistry eintragen!"); 
         }
     }
 }

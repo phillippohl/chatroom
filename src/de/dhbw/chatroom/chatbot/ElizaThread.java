@@ -7,6 +7,7 @@ import java.util.Map;
 import java.rmi.RemoteException;
 
 import de.dhbw.chatroom.server.ChatRoom;
+import de.dhbw.chatroom.util.SmartExceptionsHandling;
 /**
  * Nachdem das Hauptprogramm die Verbindung zum Chatserver hergestellt und
  * einen Raum betreten hat, übergibt es die Kontrolle an diesen Thread. Er
@@ -100,12 +101,9 @@ public class ElizaThread extends Thread {
     					counter = 0;
     				}
     			}   			   			       		
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (InterruptedException ie) {
+			} catch (RemoteException re) {
+				SmartExceptionsHandling.EnableStackTrace(re, "ACHTUNG: Haben Sie die rmiregistry gestartet?");
 			}
     	}
     }

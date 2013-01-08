@@ -210,10 +210,22 @@ public class MainWindowController {
      */
     public void writePrivateMessage() throws Exception {
         String toUser = JOptionPane.showInputDialog(this.wnd, "Empfänger der Nachricht:");
-        if (toUser == null || toUser.isEmpty()) return;
-
+        if (toUser == null) return;
+        while (toUser.trim().isEmpty()){
+        	JOptionPane.showMessageDialog(this.wnd, this.username + ": Leerer Empfänger!", "Achtung", JOptionPane.WARNING_MESSAGE);
+            toUser = JOptionPane.showInputDialog(this.wnd, "Empfänger der Nachricht:");
+            	
+            if (toUser == null) return;
+           }
+        
         String text = JOptionPane.showInputDialog(this.wnd, "Nachricht:");
-        if (text == null || text.isEmpty()) return;
+        if (text == null) return;
+        while (text.trim().isEmpty()){
+        	JOptionPane.showMessageDialog(this.wnd, this.username + ": Leere Nachricht!", "Achtung", JOptionPane.WARNING_MESSAGE);
+        	text = JOptionPane.showInputDialog(this.wnd, "Nachricht:");
+        	
+        	if (text == null) return;
+        }
 
         // TODO: Private Nachricht tatsächlich verschicken
         this.chatServer.sendPrivateMessage(this.username, toUser, text);
